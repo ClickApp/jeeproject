@@ -10,7 +10,7 @@ public interface EmpleadoService {
 	public List<Empleado> findAll();
 	
 	// Find a empleado with details by dni
-	public Empleado findById(String dni);
+	public Empleado findByDni(String dni);
 	
 	// Find empleados by nombre
 	public List<Empleado> findByNombre(String nombre);

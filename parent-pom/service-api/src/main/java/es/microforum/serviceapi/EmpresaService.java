@@ -14,7 +14,7 @@ public interface EmpresaService {
 	public Empresa findByNif(String nif);
 
 	// Find Empleados 
-	public List<Empleado> findEmpleados(String nif);	
+	public List<Empleado> findEmpleados();	
 	
 	// Insert or update a empresa
 	public Empresa save(Empresa empresa);
