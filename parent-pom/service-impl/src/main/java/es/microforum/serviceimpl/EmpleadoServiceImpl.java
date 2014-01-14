@@ -38,12 +38,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
 	@Override
 	public Empleado save(Empleado empleado) {
-		return null;
+		return empleadoRepository.save(empleado);
 	}
 
 	@Override
 	public void delete(Empleado empleado) {
-				
+		empleadoRepository.delete(empleado);		
 	}
 
 }
