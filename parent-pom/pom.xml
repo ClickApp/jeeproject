@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>			
+			<version>${junit.version}</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
@@ -37,15 +37,20 @@
 				<version>${jpa.version}</version>
 			</dependency>
 			<dependency>
-	            <groupId>org.springframework.data</groupId>
-	            <artifactId>spring-data-jpa</artifactId>
-	            <version>${jparepo.version}</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.google.guava</groupId>
-	            <artifactId>guava</artifactId>
-	            <version>${googlelist.version}</version>
-	        </dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${jparepo.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${googlelist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>1.0.2</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

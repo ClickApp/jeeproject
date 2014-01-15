@@ -36,12 +36,10 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadoRepository.findByNombre(nombre);
 	}
 
-	@Override
 	public Empleado save(Empleado empleado) {
 		return empleadoRepository.save(empleado);
 	}
 
-	@Override
 	public void delete(Empleado empleado) {
 		empleadoRepository.delete(empleado);		
 	}

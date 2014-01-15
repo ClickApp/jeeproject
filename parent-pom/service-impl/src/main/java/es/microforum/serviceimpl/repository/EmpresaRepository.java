@@ -11,6 +11,6 @@ public interface EmpresaRepository extends CrudRepository<Empresa, String> {
 
 	public Empresa findByNif(String nif);	
 	
-	public List<Empleado> findByEmpleados();
+	//public List<Empleado> findByEmpleados();
 	
 }

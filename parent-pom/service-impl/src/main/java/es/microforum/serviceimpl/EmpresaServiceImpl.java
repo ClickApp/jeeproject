@@ -27,23 +27,19 @@ public class EmpresaServiceImpl implements EmpresaService {
 		return Lists.newArrayList(empresaRepository.findAll());
 	}	
 
-	@Override
 	public Empresa findByNif(String nif) {
 		return empresaRepository.findByNif(nif);
 	}
 
-	@Override
 	public List<Empleado> findEmpleados() {
-		return empresaRepository.findByEmpleados();
+		return null;//empresaRepository.findByEmpleados();
 	}
 
-	@Override
 	public Empresa save(Empresa empresa) {
-		return null;
+		return empresaRepository.save(empresa);
 	}
 
-	@Override
 	public void delete(Empresa empresa) {
-				
+		empresaRepository.delete(empresa);		
 	}
 }
