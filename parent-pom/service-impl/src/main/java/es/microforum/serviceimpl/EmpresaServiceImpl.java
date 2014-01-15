@@ -34,7 +34,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 
 	@Override
 	public List<Empleado> findEmpleados() {
-		return empresaRepository.findEmpleados();
+		return empresaRepository.findByEmpleados();
 	}
 
 	@Override
