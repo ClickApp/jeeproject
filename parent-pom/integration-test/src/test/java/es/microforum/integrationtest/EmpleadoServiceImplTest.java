@@ -1,3 +1,8 @@
+
+/*
+ * @author Javier Urosa Domingo
+ */
+
 package es.microforum.integrationtest;
 
 import static org.junit.Assert.*;
@@ -51,7 +56,7 @@ public class EmpleadoServiceImplTest {
 	public void testFindByDni() {		
 		//Agregamos un empleado a la base de datos (Transactional) para al menos tener un empleado y poder buscarlo
 		empleadoService.save(empleado);
-		//Busco el empleado por su id y el resultado de la consulta lo meto en una variable empleado2
+		//Busco el empleado por su dni y el resultado de la consulta lo meto en una variable empleado2
 		empleado2 = empleadoService.findByDni("dni1");
 		//Compruebo que el dni de mi variable empleado2 es el mismo que el que guarde y por tanto el empleado devuelto por la consulta es correcto
 		assertTrue(empleado2.getDni().equals("dni1"));
@@ -75,7 +80,7 @@ public class EmpleadoServiceImplTest {
 		empleadoService.save(empleado);		
 		//Busco el empleado por su clave primaria, en este caso el dni y el resultado de la consulta lo meto en mi variable empleado2
 		empleado2 = empleadoService.findByDni("dni1");		
-		//Compruebo que el dni del empleado2 es el mismo que el que he agregado, por tanto el empleado se agrego a la base de datos corectamente
+		//Compruebo que el dni de la variable empleado2 es el mismo que el que he agregado, por tanto el empleado se agrego a la base de datos correctamente
 		assertTrue(empleado2.getDni().equals("dni1"));
 	}
 
@@ -90,8 +95,7 @@ public class EmpleadoServiceImplTest {
 	}
 	
 	@After
-	public void tearDown() throws Exception
-	{ 
+	public void tearDown() throws Exception	{
 		empleadoService = null;
 		empleado = null;
 		empleado2 = null;

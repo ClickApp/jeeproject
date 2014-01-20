@@ -1,3 +1,8 @@
+
+/*
+ * @author Javier Urosa Domingo
+ */
+
 package es.microforum.model;
 
 import java.util.Arrays;
@@ -17,16 +22,6 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "empleado")
-@NamedQueries({
-	@NamedQuery(name="Empleado.findAll",
-			    query="select e from Empleado e"), 
-	@NamedQuery(name="Empleado.findById", 
-			    query="select distinct e from Empleado e where e.id = :id")	
-	})
-@SqlResultSetMapping(
-		name="empleadoResult",
-		entities=@EntityResult(entityClass=Empleado.class)
-)
 public class Empleado implements java.io.Serializable {
 
 	private String dni;

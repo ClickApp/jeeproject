@@ -1,3 +1,8 @@
+
+/*
+ * @author Javier Urosa Domingo
+ */
+
 package es.microforum.model;
 
 import java.util.Date;
@@ -6,16 +11,20 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "empresa", catalog = "jee")
+@Table(name = "empresa")
 public class Empresa implements java.io.Serializable {
 
 	private String nif;

@@ -1,3 +1,8 @@
+
+/*
+ * @author Javier Urosa Domingo
+ */
+
 package es.microforum.serviceapi;
 
 import java.util.List;

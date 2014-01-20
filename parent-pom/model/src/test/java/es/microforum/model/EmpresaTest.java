@@ -1,3 +1,8 @@
+
+/*
+ * @author Javier Urosa Domingo
+ */
+
 package es.microforum.model;
 
 import static org.junit.Assert.*;
