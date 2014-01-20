@@ -5,13 +5,20 @@
 	<artifactId>parent-pom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
 	<properties>
 		<spring.version>4.0.0.RELEASE</spring.version>
+		<springtest.version>4.0.0.RELEASE</springtest.version>
 		<junit.version>4.11</junit.version>
-		<jpa.version>1.0.1.Final</jpa.version>
-		<jparepo.version>1.0.1.RELEASE</jparepo.version>
-		<googlelist.version>10.0.1</googlelist.version>
+		<hibernatejpa.version>1.0.1.Final</hibernatejpa.version>
+		<hibernateentitymanager.version>3.6.8.Final</hibernateentitymanager.version>
+		<springdatajpa.version>1.4.2.RELEASE</springdatajpa.version>
+		<com.google.guava.version>10.0.1</com.google.guava.version>
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
+		<mysqlconnector.version>5.1.6</mysqlconnector.version>	
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -19,6 +26,7 @@
 			<version>${junit.version}</version>
 		</dependency>
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -28,28 +36,63 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.hibernate.javax.persistence</groupId>
-				<artifactId>hibernate-jpa-2.0-api</artifactId>
-				<version>${jpa.version}</version>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
-				<version>${jparepo.version}</version>
+				<version>${springdatajpa.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.0-api</artifactId>
+				<version>${hibernatejpa.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${springtest.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernateentitymanager.version}</version>
+			</dependency>			
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
-				<version>${googlelist.version}</version>
+				<version>${com.google.guava.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>javax.persistence</groupId>
-				<artifactId>persistence-api</artifactId>
-				<version>1.0.2</version>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j-log4j12.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysqlconnector.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

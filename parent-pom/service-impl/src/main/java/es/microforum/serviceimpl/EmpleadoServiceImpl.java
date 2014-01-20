@@ -21,17 +21,14 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
-	@Transactional(readOnly=true)
 	public List<Empleado> findAll() {
 		return Lists.newArrayList(empleadoRepository.findAll());
 	}	
-	
-	@Transactional(readOnly=true)	
+		
 	public Empleado findByDni(String dni) {
 		return empleadoRepository.findByDni(dni);
 	}
-
-	@Transactional(readOnly=true)	
+	
 	public List<Empleado> findByNombre(String nombre) {
 		return empleadoRepository.findByNombre(nombre);
 	}
@@ -43,5 +40,5 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public void delete(Empleado empleado) {
 		empleadoRepository.delete(empleado);		
 	}
-
+	
 }
