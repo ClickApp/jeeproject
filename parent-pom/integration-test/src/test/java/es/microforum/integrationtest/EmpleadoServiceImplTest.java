@@ -34,7 +34,7 @@ public class EmpleadoServiceImplTest {
 	List<Empleado> empleados;
 		
 	@Before
-	public void setUp() throws Exception {		
+	public void setUp() throws Exception {				
 		//Creo un empleado para probar los test
 		empleado = new Empleado("dni1",null,"empleado1","dir1","tipo1","empleadoCol1",35000.0,35.0,150.0,null);			
 	}
