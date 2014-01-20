@@ -1,1 +1,0 @@
-prueba de entrono en sobremesa de casa
