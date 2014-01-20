@@ -87,7 +87,7 @@ public class EmpleadoServiceImplTest {
 	@Test
 	@Transactional
 	public void testDelete() {
-		//Ejecuto el test en el que se añade un empleado a la base de datos, de forma que añado un empleado y compruebo que realmente se agrego
+		//Ejecuto el test en el que se agrega un empleado a la base de datos, de forma que agrego un empleado y compruebo que realmente se agrego
 		testSave();
 		//Elimino el empleado de la base de datos y compruebo que al buscar entre todos los empleados ese ya no esta
 		empleadoService.delete(empleado);

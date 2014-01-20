@@ -79,7 +79,7 @@ public class EmpresaServiceImplTest {
 	@Test
 	@Transactional
 	public void testDelete() {
-		//Ejecuto el test en el que se añade una empresa a la base de datos, de forma que añado una empresa y compruebo que realmente se agrego
+		//Ejecuto el test en el que se agrega una empresa a la base de datos, de forma que agrego una empresa y compruebo que realmente se agrego
 		testSave();
 		//Elimino la empresa de la base de datos y compruebo que al buscar entre todas las empresas esa ya no esta
 		empresaService.delete(empresa);
