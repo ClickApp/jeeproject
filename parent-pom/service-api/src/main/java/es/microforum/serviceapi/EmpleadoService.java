@@ -1,24 +1,14 @@
 package es.microforum.serviceapi;
 
 import java.util.List;
-
 import es.microforum.model.Empleado;
 
 public interface EmpleadoService {
 
-	// Find all empleados
-	public List<Empleado> findAll();
-	
-	// Find a empleado with details by dni
-	public Empleado findByDni(String dni);
-	
-	// Find empleados by nombre
-	public List<Empleado> findByNombre(String nombre);
-	
-	// Insert or update Empleado
-	public Empleado save(Empleado empleado);
-
-	// Delete a Empleado
-	public void delete(Empleado empleado);		
+	public List<Empleado> findAll(); // Obtener listado con todos los empleados
+	public Empleado findByDni(String dni); // Obtener un empleado por su dni
+	public List<Empleado> findByNombre(String nombre); // Obtener empleados por nombre
+	public Empleado save(Empleado empleado); // Agregar, modificar un empleado
+	public void delete(Empleado empleado);	// Eliminar un empleado	
 	
 }

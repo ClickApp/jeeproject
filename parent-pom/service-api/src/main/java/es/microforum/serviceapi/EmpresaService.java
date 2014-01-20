@@ -2,24 +2,13 @@ package es.microforum.serviceapi;
 
 import java.util.List;
 
-import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
 
 public interface EmpresaService {
 
-	// Find all empresas
-	public List<Empresa> findAll();
+	public List<Empresa> findAll(); // Obtener listado con todos las empresas
+	public Empresa findByNif(String nif); // Obtener una empresa por su nif	
+	public Empresa save(Empresa empresa); // Agregar, modificar un empresa
+	public void delete(Empresa empresa); // Eliminar una empresa		
 
-	// Find a empresa by nif
-	public Empresa findByNif(String nif);
-
-	// Find Empleados 
-	public List<Empleado> findEmpleados();	
-	
-	// Insert or update a empresa
-	public Empresa save(Empresa empresa);
-
-	// Delete a empresa
-	public void delete(Empresa empresa);	
-	
 }
