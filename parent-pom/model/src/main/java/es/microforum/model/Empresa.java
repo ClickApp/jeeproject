@@ -14,8 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-//
-
 @Entity
 @Table(name = "empresa", catalog = "jee")
 public class Empresa implements java.io.Serializable {
