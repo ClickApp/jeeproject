@@ -78,11 +78,15 @@ public class EmpresaServiceImplTest {
 
 	@Test
 	@Transactional
-	public void testDelete() {
-		//Ejecuto el test en el que se agrega una empresa a la base de datos, de forma que agrego una empresa y compruebo que realmente se agrego
-		testSave();
+	public void testDelete() {	
+		//Agrego una empresa a la base de datos y compruebo que realmente se agrego
+		empresaService.save(empresa);
+		//Busco la empresa por su clave primaria, en este caso el nif y el resultado de la consulta lo meto en mi variable empresa2
+		empresa2 = empresaService.findByNif("nif1");
+		//Compruebo que el nif de la variable empresa2 es el mismo que el que he agregado, por tanto la empresa se agrego a la base de datos correctamente
+		assertTrue(empresa2.getNif().equals("nif1"));
 		//Elimino la empresa de la base de datos y compruebo que al buscar entre todas las empresas esa ya no esta
-		empresaService.delete(empresa);
+		empresaService.delete(empresa2);
 		assertTrue(!empresaService.findAll().contains(empresa));
 	}
 	

@@ -14,6 +14,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -32,6 +34,7 @@ public class EmpleadoServiceImplTest {
 	Empleado empleado;
 	Empleado empleado2;
 	List<Empleado> empleados;
+	Pageable page;
 		
 	@Before
 	public void setUp() throws Exception {				
@@ -68,7 +71,7 @@ public class EmpleadoServiceImplTest {
 		//Agregamos un empleado a la base de datos (Transactional) para al menos tener un empleado y poder buscarlo
 		empleadoService.save(empleado);
 		//Busco empleados por nombre y el resultado de la consulta lo meto en un List<Empleado> 
-		empleados = empleadoService.findByNombre("empleado1");			
+		empleados = empleadoService.findByNombre(page,"empleado1").getContent();			
 		//Compruebo que el List<Empleado> devuelto por la consulta contiene el empleado agregado cuyo nombre es por el cual realizo la misma
 		assertTrue(empleados.contains(empleado));
 	}
@@ -87,10 +90,14 @@ public class EmpleadoServiceImplTest {
 	@Test
 	@Transactional
 	public void testDelete() {
-		//Ejecuto el test en el que se agrega un empleado a la base de datos, de forma que agrego un empleado y compruebo que realmente se agrego
-		testSave();
+		//Agrego un empleado a la base de datos y compruebo que realmente se agrego
+		empleadoService.save(empleado);	
+		//Busco el empleado por su clave primaria, en este caso el dni y el resultado de la consulta lo meto en mi variable empleado2
+		empleado2 = empleadoService.findByDni("dni1");		
+		//Compruebo que el dni de la variable empleado2 es el mismo que el que he agregado, por tanto el empleado se agrego a la base de datos correctamente
+		assertTrue(empleado2.getDni().equals("dni1"));
 		//Elimino el empleado de la base de datos y compruebo que al buscar entre todos los empleados ese ya no esta
-		empleadoService.delete(empleado);
+		empleadoService.delete(empleado2);
 		assertTrue(!empleadoService.findAll().contains(empleado));
 	}
 	
@@ -100,6 +107,7 @@ public class EmpleadoServiceImplTest {
 		empleado = null;
 		empleado2 = null;
 		empleados = null;
+		page = null;
 	}
 
 }
