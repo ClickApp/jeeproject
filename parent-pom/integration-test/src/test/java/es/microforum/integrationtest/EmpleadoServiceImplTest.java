@@ -48,7 +48,7 @@ public class EmpleadoServiceImplTest {
 		//Agregamos un empleado a la base de datos (Transactional) para al menos tener un empleado y poder buscar
 		empleadoService.save(empleado);		
 		//Obtengo el listado de todos los empleados de la base de datos
-		empleados = empleadoService.findAll();
+		empleados = empleadoService.findAll(page).getContent();
 		//Compruebo que el listado tiene al menos 1 empleado y que el empleado agregado recientemente viene en ese listado
 		assertTrue(empleados.size() > 0);
 		assertTrue(empleados.contains(empleado));
@@ -98,7 +98,7 @@ public class EmpleadoServiceImplTest {
 		assertTrue(empleado2.getDni().equals("dni1"));
 		//Elimino el empleado de la base de datos y compruebo que al buscar entre todos los empleados ese ya no esta
 		empleadoService.delete(empleado2);
-		assertTrue(!empleadoService.findAll().contains(empleado));
+		assertTrue(!empleadoService.findAll(page).getContent().contains(empleado));
 	}
 	
 	@After

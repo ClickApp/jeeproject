@@ -2,8 +2,11 @@ package es.microforum.webfrontend.web.controller;
 
 import java.util.List;
 import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.microforum.model.Empleado;
+import es.microforum.model.Empresa;
 import es.microforum.serviceapi.EmpleadoService;
+import es.microforum.serviceapi.EmpresaService;
 import es.microforum.webfrontend.web.form.EmpleadoGrid;
 import es.microforum.webfrontend.web.form.Message;
 import es.microforum.webfrontend.web.util.UrlUtil;
@@ -38,16 +43,13 @@ public class EmpleadoController {
 
 	@Autowired
 	private EmpleadoService empleadoService;
+	
+	@Autowired
+	private EmpresaService empresaService;	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model uiModel) {
-		logger.info("Listing empleados");
-
-		List<Empleado> empleados = empleadoService.findAll();
-		uiModel.addAttribute("empleados", empleados);
-
-		logger.info("No. of empleados: " + empleados.size());
-
+		logger.info("Listing empleados");		
 		return "empleados/list";
 	}
 
@@ -76,7 +78,8 @@ public class EmpleadoController {
 				"message",
 				new Message("success", messageSource.getMessage(
 						"empleado_save_success", new Object[] {}, locale)));
-
+		
+		empleado.setEmpresa(empresaService.findByNif(empleado.getEmpresa().getNif()));
 		empleadoService.save(empleado);
 		return "redirect:/empleados/"
 				+ UrlUtil.encodeUrlPathSegment(empleado.getDni().toString(),
@@ -86,6 +89,7 @@ public class EmpleadoController {
 	@RequestMapping(value = "/{dni}", params = "form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("dni") String dni, Model uiModel) {
 		uiModel.addAttribute("empleado", empleadoService.findByDni(dni));
+	    uiModel.addAttribute("empresas", empresaService.findAll());	  
 		return "empleados/update";
 	}
 
@@ -110,6 +114,7 @@ public class EmpleadoController {
 
 		logger.info("Empleado id: " + empleado.getDni());
 
+		empleado.setEmpresa(empresaService.findByNif(empleado.getEmpresa().getNif()));
 		empleadoService.save(empleado);
 		return "redirect:/empleados/"
 				+ UrlUtil.encodeUrlPathSegment(empleado.getDni().toString(),
@@ -121,6 +126,7 @@ public class EmpleadoController {
 	public String createForm(Model uiModel) {
 		Empleado empleado = new Empleado();
 		uiModel.addAttribute("empleado", empleado);
+		uiModel.addAttribute("empresas", empresaService.findAll());
 		return "empleados/create";
 	}
 
@@ -149,8 +155,8 @@ public class EmpleadoController {
 		EmpleadoGrid empleadoGrid = new EmpleadoGrid();
 		Page<Empleado> empleados;
 		
-		if (nombre == null || nombre.equals("undefined")) {
-			empleados = empleadoService.findByNombre(pageRequest, "");
+		if (nombre == null || nombre.equals("")) {
+			empleados = empleadoService.findAll(pageRequest);
 		} else {
 			empleados = empleadoService.findByNombre(pageRequest, nombre);
 		}

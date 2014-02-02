@@ -63,6 +63,10 @@
                 <td>${labelEmpleadoCantidadHoras}</td>
                 <td>${empleado.cantidadHoras}</td>
             </tr>
+            <tr>
+                <td>${labelEmpleadoNifEmpresa}</td>
+                <td>${empleado.empresa.nif}</td>
+            </tr>
         </table>         
        
         <a href="${editEmpleadoUrl}/${empleado.dni}?form">${labelEmpleadoUpdate}</a>     

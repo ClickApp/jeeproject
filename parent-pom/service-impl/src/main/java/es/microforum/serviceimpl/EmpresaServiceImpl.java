@@ -30,6 +30,10 @@ public class EmpresaServiceImpl implements EmpresaService {
 	
 	public List<Empresa> findAll() {
 		return Lists.newArrayList(empresaRepository.findAll());
+	}
+	
+	public Page<Empresa> findAll(Pageable pageable) {
+		return empresaRepository.findAll(pageable);
 	}	
 
 	public Empresa findByNif(String nif) {

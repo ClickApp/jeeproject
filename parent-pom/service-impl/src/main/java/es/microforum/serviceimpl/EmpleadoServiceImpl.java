@@ -17,8 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
 
 import es.microforum.model.Empleado;
+import es.microforum.model.Empresa;
 import es.microforum.serviceapi.EmpleadoService;
 import es.microforum.serviceimpl.repository.EmpleadoRepository;
+import es.microforum.serviceimpl.repository.EmpresaRepository;
 
 @Service("springJpaEmpleadoService")
 @Repository
@@ -28,13 +30,19 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
-	public List<Empleado> findAll() {
-		return Lists.newArrayList(empleadoRepository.findAll());
+	@Autowired
+	private EmpresaRepository empresaRepository;
+	
+	public Page<Empleado> findAll(Pageable pageable) {
+		return empleadoRepository.findAll(pageable);
 	}	
 		
 	public Empleado findByDni(String dni) {
+//		Empleado empleado = empleadoRepository.findByDni(dni);
+//		Empresa empresa = empresaRepository.findByNif(empleado.getEmpresa().getNif());
+//		empresa.getEmpleados().size();
 		return empleadoRepository.findByDni(dni);
-	}
+	}	
 	
 	public Page<Empleado> findByNombre(Pageable pageable, String nombre) {
 		return empleadoRepository.findByNombre(pageable,nombre);

@@ -18,21 +18,7 @@
 	<spring:message code="label_empleado_cantidadHoras" var="labelEmpleadoCantidadHoras" />
 	<spring:message code="label_empleado_nifEmpresa" var="labelEmpleadoNifEmpresa" />
     <spring:eval expression="empleado.dni == null ? labelEmpleadoNew:labelEmpleadoUpdate" var="formTitle"/>
-    <script type="text/javascript">
-    $(function(){ 
-        $('#fechaNacimiento').datepicker({ 
-            dateFormat: 'yy-mm-dd',
-            changeYear: true
-        });
-        
-        $("#descripcion").ckeditor(
-            {
-                toolbar : 'Basic',
-                uiColor : '#CCCCCC'
-            }              
-        );     
-    });
-    </script>
+    
     <h1>${formTitle}</h1>
     <div id="empleadoUpdate">
     <form:form modelAttribute="empleado" id="empleadoUpdateForm" method="post" >
@@ -43,7 +29,14 @@
         <form:label path="dni">
             ${labelEmpleadoDni}* 
         </form:label>
-        <form:input path="dni" />
+        <c:choose>
+        	<c:when test="${empleado.dni==null}">
+        		<form:input path="dni" />
+        	</c:when>
+          	<c:otherwise>
+        		<form:input path="dni" readOnly="true" />
+        	</c:otherwise>
+        </c:choose>
         <div>
             <form:errors path="dni" cssClass="error" />
         </div>
@@ -110,6 +103,14 @@
         <div>
             <form:errors path="cantidadHoras" cssClass="error" />
         </div>
+        <p/>
+        
+        <form:label path="empresa">
+            ${labelEmpleadoNifEmpresa}* 
+        </form:label>
+        <form:select path="empresa">
+        	<form:options items="${empresas}" itemLabel="nif" itemValue="nif"/>
+        </form:select>        
         <p/>
                   
         <form:hidden path="version" />

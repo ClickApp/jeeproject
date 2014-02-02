@@ -185,7 +185,7 @@ public class Empleado implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Empleado [dni=" + dni + ", version=" + version + ", empresa="
-				+ empresa + ", nombre=" + nombre + ", direccion=" + direccion
+				+ empresa.getNif() + ", nombre=" + nombre + ", direccion=" + direccion
 				+ ", tipoEmpleado=" + tipoEmpleado + ", empleadocol="
 				+ empleadocol + ", salarioAnual=" + salarioAnual
 				+ ", valorHora=" + valorHora + ", cantidadHoras="

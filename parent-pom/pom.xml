@@ -25,6 +25,7 @@
 		<jspapi.version>2.1</jspapi.version>
 		<jstl.version>1.2</jstl.version>
 		<jodatimejsptags.version>1.1.1</jodatimejsptags.version>
+<!-- 		<joda.version>2.3</joda.version> -->
 		<tilescore.version>2.2.2</tilescore.version>
 		<jacksonmapperlgpl.version>1.9.2</jacksonmapperlgpl.version>
 		<apachecommons.version>2.1</apachecommons.version>
@@ -157,6 +158,11 @@
 				<artifactId>joda-time-jsptags</artifactId>
 				<version>${jodatimejsptags.version}</version>
 			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>joda-time</groupId> -->
+<!-- 				<artifactId>joda-time</artifactId> -->
+<!-- 				<version>${joda.version}</version> -->
+<!-- 			</dependency> -->
 			<dependency>
 				<groupId>org.apache.tiles</groupId>
 				<artifactId>tiles-core</artifactId>

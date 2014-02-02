@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -34,6 +35,7 @@ public class EmpresaServiceImplTest {
     Empresa empresa2;
     SimpleDateFormat sdf;
     List<Empresa> empresas;
+    Pageable page;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -48,7 +50,7 @@ public class EmpresaServiceImplTest {
 		//Agregamos una empresa a la base de datos (Transactional) para al menos tener una empresa y poder buscar
 		empresaService.save(empresa);		
 		//Obtengo el listado de todas las empresas de la base de datos
-		empresas = empresaService.findAll();
+		empresas = empresaService.findAll(page).getContent();
 		//Compruebo que el listado tiene al menos 1 empresa y que la empresa agregada recientemente viene en ese listado
 		assertTrue(empresas.size() > 0);
 		assertTrue(empresas.contains(empresa));
@@ -87,7 +89,7 @@ public class EmpresaServiceImplTest {
 		assertTrue(empresa2.getNif().equals("nif1"));
 		//Elimino la empresa de la base de datos y compruebo que al buscar entre todas las empresas esa ya no esta
 		empresaService.delete(empresa2);
-		assertTrue(!empresaService.findAll().contains(empresa));
+		assertTrue(!empresaService.findAll(page).getContent().contains(empresa));
 	}
 	
 	@After
@@ -97,6 +99,7 @@ public class EmpresaServiceImplTest {
 	    empresa2 = null;
 		sdf = null;	    
 	    empresas = null;
+	    page = null;
 	}
 
 }

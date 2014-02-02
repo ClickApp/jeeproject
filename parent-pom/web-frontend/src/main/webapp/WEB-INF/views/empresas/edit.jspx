@@ -16,7 +16,7 @@
     <script type="text/javascript">
     $(function(){ 
         $('#fechaInicioActividades').datepicker({ 
-            dateFormat: 'yyyy-mm-dd',
+            dateFormat: 'yy-mm-dd',
             changeYear: true
         });
         
@@ -38,7 +38,16 @@
         <form:label path="nif">
             ${labelEmpresaNif}* 
         </form:label>
-        <form:input path="nif" />
+        
+        <c:choose>
+        	<c:when test="${empresa.nif==null}">
+        		<form:input path="nif" />
+        	</c:when>        	
+        	<c:otherwise>
+        		<form:input path="nif" readOnly="true" />
+        	</c:otherwise>
+        </c:choose>
+        
         <div>
             <form:errors path="nif" cssClass="error" />
         </div>
