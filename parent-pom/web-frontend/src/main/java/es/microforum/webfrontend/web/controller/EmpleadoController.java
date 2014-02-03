@@ -85,7 +85,7 @@ public class EmpleadoController {
 
 	@RequestMapping(value = "/{dni}", params = "form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("dni") String dni, Model uiModel) {
-		uiModel.addAttribute("empleado", empleadoService.findByDni(dni));
+		uiModel.addAttribute("empleado", empleadoService.findByDniEmpresa(dni));
 	    uiModel.addAttribute("empresas", empresaService.findAll());	  
 		return "empleados/update";
 	}

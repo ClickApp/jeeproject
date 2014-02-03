@@ -11,9 +11,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import es.microforum.model.Empleado;
 
 public interface EmpleadoRepository extends PagingAndSortingRepository<Empleado, String> {
-
-	public Empleado findByDni(String dni);
 	
-	public Page<Empleado> findByNombre(Pageable pageable,String nombre);	
+	Page<Empleado> findByNombre(Pageable pageable,String nombre);	
 	
 }

@@ -5,16 +5,12 @@
 
 package es.microforum.serviceimpl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.Lists;
 
 import es.microforum.model.Empleado;
 import es.microforum.model.Empresa;
@@ -38,11 +34,15 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	}	
 		
 	public Empleado findByDni(String dni) {
-//		Empleado empleado = empleadoRepository.findByDni(dni);
-//		Empresa empresa = empresaRepository.findByNif(empleado.getEmpresa().getNif());
-//		empresa.getEmpleados().size();
-		return empleadoRepository.findByDni(dni);
-	}	
+		return empleadoRepository.findOne(dni);
+	}		
+
+	public Empleado findByDniEmpresa(String dni) {
+		Empleado empleado = empleadoRepository.findOne(dni);
+		Empresa empresa = empleado.getEmpresa();
+		empresa.getEmpleados().size();
+		return empleado;
+	}
 	
 	public Page<Empleado> findByNombre(Pageable pageable, String nombre) {
 		return empleadoRepository.findByNombre(pageable,nombre);

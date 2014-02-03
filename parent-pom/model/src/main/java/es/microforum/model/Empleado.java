@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "empleado")
+@Table(name = "empleado", catalog = "jee")
 public class Empleado implements java.io.Serializable {
 
 	private String dni;
@@ -184,11 +184,11 @@ public class Empleado implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Empleado [dni=" + dni + ", version=" + version + ", empresa="
-				+ empresa.getNif() + ", nombre=" + nombre + ", direccion=" + direccion
-				+ ", tipoEmpleado=" + tipoEmpleado + ", empleadocol="
-				+ empleadocol + ", salarioAnual=" + salarioAnual
-				+ ", valorHora=" + valorHora + ", cantidadHoras="
-				+ cantidadHoras + ", imagen=" + Arrays.toString(imagen) + "]";
+		return "Empleado [dni=" + getDni() + ", empresa="
+				+ empresa.getNif() + ", nombre=" + getNombre() + ", direccion=" + getDireccion()
+				+ ", tipoEmpleado=" + getTipoEmpleado() + ", empleadocol="
+				+ getEmpleadocol() + ", salarioAnual=" + getSalarioAnual()
+				+ ", valorHora=" + getValorHora() + ", cantidadHoras="
+				+ getCantidadHoras() + "]";
 	}		
 }

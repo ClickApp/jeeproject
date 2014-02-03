@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "empresa")
+@Table(name = "empresa", catalog = "jee")
 public class Empresa implements java.io.Serializable {
 
 	private String nif;
@@ -130,9 +130,8 @@ public class Empresa implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Empresa [nif=" + nif + ", version=" + version + ", nombre="
-				+ nombre + ", direccionFiscal=" + direccionFiscal
-				+ ", fechaInicioActividades=" + fechaInicioActividades + "]";
-				//+ ", empleados=" + empleados + "]";
+		return "Empresa [nif=" + getNif() + ", version=" + getVersion() + ", nombre="
+				+ getNombre() + ", direccionFiscal=" + getDireccionFiscal()
+				+ ", fechaInicioActividades=" + getFechaInicioActividades() + "]";				
 	}	
 }

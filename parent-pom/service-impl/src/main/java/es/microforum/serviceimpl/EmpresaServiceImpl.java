@@ -37,7 +37,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}	
 
 	public Empresa findByNif(String nif) {
-		return empresaRepository.findByNif(nif);
+		return empresaRepository.findOne(nif);
 	}
 
 	public Empresa save(Empresa empresa) {
