@@ -1,12 +1,10 @@
 package es.microforum.webfrontend.web.controller;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.microforum.model.Empleado;
-import es.microforum.model.Empresa;
 import es.microforum.serviceapi.EmpleadoService;
 import es.microforum.serviceapi.EmpresaService;
 import es.microforum.webfrontend.web.form.EmpleadoGrid;
@@ -91,6 +88,16 @@ public class EmpleadoController {
 		uiModel.addAttribute("empleado", empleadoService.findByDni(dni));
 	    uiModel.addAttribute("empresas", empresaService.findAll());	  
 		return "empleados/update";
+	}
+	
+	@RequestMapping(value = "/{dni}", params = "delete", method = RequestMethod.GET)
+	public String delete(@PathVariable("dni") String dni, Model uiModel, RedirectAttributes redirectAttributes, Locale locale) {
+		logger.info("Deleting empleado");
+		empleadoService.delete(empleadoService.findByDni(dni));
+		uiModel.asMap().clear();
+		redirectAttributes.addFlashAttribute("message", new Message("success", 
+				messageSource.getMessage("empleado_delete_success", new Object[] {}, locale)));
+		return "redirect:/empleados/delete";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

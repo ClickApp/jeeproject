@@ -19,6 +19,7 @@
 	<spring:message code="label_empleado_cantidadHoras" var="labelEmpleadoCantidadHoras" />
 	<spring:message code="label_empleado_nifEmpresa" var="labelEmpleadoNifEmpresa" />
     <spring:message code="label_empleado_update" var="labelEmpleadoUpdate"/>
+    <spring:message code="label_empleado_delete" var="labelEmpleadoDelete"/>
     <spring:message code="date_format_pattern" var="dateFormatPattern"/>
     <spring:url value="/empleados" var="editEmpleadoUrl"/>    
 
@@ -67,9 +68,14 @@
                 <td>${labelEmpleadoNifEmpresa}</td>
                 <td>${empleado.empresa.nif}</td>
             </tr>
-        </table>         
-       
-        <a href="${editEmpleadoUrl}/${empleado.dni}?form">${labelEmpleadoUpdate}</a>     
+        </table>          
+       	<br/>
+       	<table>
+       		<tr>
+       			<td width="100px"><a href="${editEmpleadoUrl}/${empleado.dni}?form">${labelEmpleadoUpdate}</a></td>
+       			<td><a href="${editEmpleadoUrl}/${empleado.dni}?delete">${labelEmpleadoDelete}</a></td>
+       		</tr>
+       	</table>         
                       
     </div>
     

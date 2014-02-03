@@ -14,6 +14,7 @@
 	<spring:message code="label_empresa_direccionFiscal" var="labelEmpresaDireccionFiscal" />
 	<spring:message code="label_empresa_fechaInicioActividades" var="labelEmpresaFechaInicioActividades" />
     <spring:message code="label_empresa_update" var="labelEmpresaUpdate"/>
+    <spring:message code="label_empresa_delete" var="labelEmpresaDelete"/>
     <spring:message code="date_format_pattern" var="dateFormatPattern"/>
     <spring:url value="/empresas" var="editEmpresaUrl"/>    
 
@@ -41,10 +42,15 @@
             <tr>
                 <td>${labelEmpresaFechaInicioActividades}</td>
                 <td>${empresa.fechaInicioActividades}</td>
-            </tr>   
+            </tr>               
         </table>         
-       
-        <a href="${editEmpresaUrl}/${empresa.nif}?form">${labelEmpresaUpdate}</a>     
+       	<br/>
+       	<table>
+       		<tr>
+       			<td width="100px"><a href="${editEmpresaUrl}/${empresa.nif}?form">${labelEmpresaUpdate}</a></td>
+       			<td><a href="${editEmpresaUrl}/${empresa.nif}?delete">${labelEmpresaDelete}</a></td>
+       		</tr>
+       	</table>        
                       
     </div>
 

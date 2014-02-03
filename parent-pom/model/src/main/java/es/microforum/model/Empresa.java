@@ -132,7 +132,7 @@ public class Empresa implements java.io.Serializable {
 	public String toString() {
 		return "Empresa [nif=" + nif + ", version=" + version + ", nombre="
 				+ nombre + ", direccionFiscal=" + direccionFiscal
-				+ ", fechaInicioActividades=" + fechaInicioActividades
-				+ ", empleados=" + empleados + "]";
+				+ ", fechaInicioActividades=" + fechaInicioActividades + "]";
+				//+ ", empleados=" + empleados + "]";
 	}	
 }

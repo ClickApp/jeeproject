@@ -96,6 +96,16 @@ public class EmpresaController {
 		return "empresas/update";
 	}
 
+	@RequestMapping(value = "/{nif}", params = "delete", method = RequestMethod.GET)
+	public String delete(@PathVariable("nif") String nif, Model uiModel, RedirectAttributes redirectAttributes, Locale locale) {
+		logger.info("Deleting empresa");
+		empresaService.delete(empresaService.findByNif(nif));
+		uiModel.asMap().clear();
+		redirectAttributes.addFlashAttribute("message", new Message("success", 
+				messageSource.getMessage("empresa_delete_success", new Object[] {}, locale)));
+		return "redirect:/empresas/delete";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String create(@Valid Empresa empresa, BindingResult bindingResult,
 			Model uiModel, HttpServletRequest httpServletRequest,
