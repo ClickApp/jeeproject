@@ -12,7 +12,7 @@
 		<hibernatejpa.version>1.0.1.Final</hibernatejpa.version>
 		<hibernateentitymanager.version>3.6.8.Final</hibernateentitymanager.version>
 		<hibernatevalidator.version>4.2.0.Final</hibernatevalidator.version>
-		<springdatajpa.version>1.3.0.RELEASE</springdatajpa.version>
+		<springdatajpa.version>1.1.0.RELEASE</springdatajpa.version>
 		<spring-data-commons-core.version>1.3.1.RELEASE</spring-data-commons-core.version>
 		<org.springsecurity-version>3.2.0.RELEASE</org.springsecurity-version>
 		<org.aspectj-version>1.6.9</org.aspectj-version>
