@@ -29,11 +29,15 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import es.microforum.model.Empresa;
+import es.microforum.serviceapi.EmpresaService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-data-app-context.xml"})
 public class EmpresaServiceFrontEndTest {
 
+	@Autowired
+	EmpresaService empresaService;	
+	
 	@Autowired
 	DataSource dataSource;
 	String dirFrontEnd = "http://localhost:8080/service-frontend";
@@ -43,15 +47,14 @@ public class EmpresaServiceFrontEndTest {
 	
 	@Before
 	public void setUp() throws Exception {		
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.execute("DELETE FROM EMPRESA WHERE NIF LIKE '%nifPrueba%'");
+		jdbcTemplate = new JdbcTemplate(dataSource);		
+		jdbcTemplate.execute("INSERT INTO EMPRESA VALUES('nifPrueba','nombrePrueba','DirPrueba',null,0)");
 		restTemplate = new RestTemplate();
 	}	
 
 	@Test
 	public void getTest() {
 		try{
-			jdbcTemplate.execute("INSERT INTO EMPRESA VALUES('nifPrueba','nombrePrueba','DirPrueba',null,0)");
 			URI uri = new URI(dirFrontEnd + "/empresa/nifPrueba");
 			Resource<Empresa> resource = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<Resource<Empresa>>() {}).getBody();
 			assertTrue(resource.getContent().getNombre().equals("nombrePrueba"));
@@ -65,63 +68,58 @@ public class EmpresaServiceFrontEndTest {
 	@Test
 	public void deleteTest() {
 		try {
-			jdbcTemplate.execute("INSERT INTO EMPRESA VALUES('nifPrueba','nombrePrueba','DirPrueba',null,0)");
-			int count = jdbcTemplate.queryForInt("SELECT COUNT(*) FROM EMPRESA WHERE NIF='nifPrueba'");
-			assertTrue(count == 1);
+			String nombreEmpresa = (String)jdbcTemplate.queryForObject("SELECT NOMBRE FROM EMPRESA WHERE NIF= ?", new Object[]{ "nifPrueba" }, String.class);
+			assertTrue(nombreEmpresa.equals("nombrePrueba"));			
 			URI uri = new URI(dirFrontEnd.toString() + "/empresa/nifPrueba");
 			restTemplate.delete(uri);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
-		int count = jdbcTemplate.queryForInt("SELECT COUNT(*) FROM EMPRESA WHERE NIF='nifPrueba'");
-		assertTrue(count == 0);
+		assertTrue(empresaService.findByNif("nifPrueba") == null);					
 	}
 	
-//	@Test
-//	public void postTest() throws RestClientException, URISyntaxException {		
-//		String url = dirFrontEnd + "/empresa/";
-//		String acceptHeaderValue = "application/json";
-//
-//		HttpHeaders requestHeaders = new HttpHeaders();
-//		List<MediaType> mediaTypes = new ArrayList<MediaType>();
-//		mediaTypes.add(MediaType.valueOf(acceptHeaderValue));
-//		requestHeaders.setAccept(mediaTypes);
-//		requestHeaders.setContentType(MediaType.valueOf(acceptHeaderValue));
-//		HttpMethod post = HttpMethod.POST;
-//
-//		String body = "{\"Nif\":\"nifPrueba\",\"Nombre\":\"nombrePrueba\",\"DireccionFiscal\":\"DirPrueba\",\"FechaInicioActividades\":\"2014-01-10\",\"Version\":\"0\"}";
-//		HttpEntity<String> entity = new HttpEntity<String>(body, requestHeaders);
-//
-//		ResponseEntity<String> response = restTemplate.exchange(url, post, entity, String.class);
-//		assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
-//		int count = jdbcTemplate.queryForInt("SELECT COUNT(*) FROM EMPRESA WHERE NIF='nifPrueba'");
-//		assertTrue(count == 1);
-//		jdbcTemplate.execute("DELETE FROM EMPRESA WHERE NIF='nifPrueba'");
-//	}
+	@Test
+	public void postTest() throws RestClientException, URISyntaxException {		
+		String url = dirFrontEnd + "/empresa/";
+		String acceptHeaderValue = "application/json";
+
+		HttpHeaders requestHeaders = new HttpHeaders();
+		List<MediaType> mediaTypes = new ArrayList<MediaType>();
+		mediaTypes.add(MediaType.valueOf(acceptHeaderValue));
+		requestHeaders.setAccept(mediaTypes);
+		requestHeaders.setContentType(MediaType.valueOf(acceptHeaderValue));
+		HttpMethod post = HttpMethod.POST;
+
+		String body = "{\"nif\":\"nifPrueba\",\"nombre\":\"nombrePrueba\",\"direccionFiscal\":\"DirPrueba\",\"fechaInicioActividades\":\"2014-01-10\",\"version\":\"0\"}";
+		HttpEntity<String> entity = new HttpEntity<String>(body, requestHeaders);
+
+		ResponseEntity<String> response = restTemplate.exchange(url, post, entity, String.class);
+		assertTrue(response.getStatusCode().equals(HttpStatus.CREATED));
+		String nombreEmpresa = (String)jdbcTemplate.queryForObject("SELECT NOMBRE FROM EMPRESA WHERE NIF= ?", new Object[]{ "nifPrueba" }, String.class);
+		assertTrue(nombreEmpresa.equals("nombrePrueba"));
+	}
 	
-//	@Test
-//	public void putTest() throws RestClientException, URISyntaxException {
-//		jdbcTemplate.execute("INSERT INTO EMPRESA VALUES('nifPrueba','nombrePrueba','DirPrueba','2014-01-10',0)");
-//		String url = dirFrontEnd + "/empresa/nifPrueba";
-//		String acceptHeaderValue = "application/json";
-//
-//		HttpHeaders requestHeaders = new HttpHeaders();
-//		List<MediaType> mediaTypes = new ArrayList<MediaType>();
-//		mediaTypes.add(MediaType.valueOf(acceptHeaderValue));
-//		requestHeaders.setAccept(mediaTypes);
-//		requestHeaders.setContentType(MediaType.valueOf(acceptHeaderValue));
-//		HttpMethod put = HttpMethod.PUT;
-//
-//		String body = "{\"Nombre\":\"nombrePruebaModificado\"}";
-//		HttpEntity<String> entity = new HttpEntity<String>(body, requestHeaders);
-//
-//		ResponseEntity<String> response = restTemplate.exchange(url, put, entity, String.class);
-//		assertTrue(response.getStatusCode().equals(HttpStatus.NO_CONTENT));
-//		int count = jdbcTemplate.queryForInt("SELECT COUNT(*) FROM EMPRESA WHERE NOMBRE = 'nombrePruebaModificado'");
-//		assertTrue(count == 1);
-//		jdbcTemplate.execute("DELETE FROM EMPRESA WHERE NIF = 'nifPrueba'");
-//	}
+	@Test
+	public void putTest() throws RestClientException, URISyntaxException {		
+		String url = dirFrontEnd + "/empresa/nifPrueba";
+		String acceptHeaderValue = "application/json";
+
+		HttpHeaders requestHeaders = new HttpHeaders();
+		List<MediaType> mediaTypes = new ArrayList<MediaType>();
+		mediaTypes.add(MediaType.valueOf(acceptHeaderValue));
+		requestHeaders.setAccept(mediaTypes);
+		requestHeaders.setContentType(MediaType.valueOf(acceptHeaderValue));
+		HttpMethod put = HttpMethod.PUT;
+
+		String body = "{\"nombre\":\"nombrePruebaModificado\"}";
+		HttpEntity<String> entity = new HttpEntity<String>(body, requestHeaders);
+
+		ResponseEntity<String> response = restTemplate.exchange(url, put, entity, String.class);
+		assertTrue(response.getStatusCode().equals(HttpStatus.NO_CONTENT));
+		String nombreEmpresa = (String)jdbcTemplate.queryForObject("SELECT NOMBRE FROM EMPRESA WHERE NIF= ?", new Object[]{ "nifPrueba" }, String.class);
+		assertTrue(nombreEmpresa.equals("nombrePruebaModificado"));
+	}
 		
 	@After
 	public void tearDown() throws Exception {
