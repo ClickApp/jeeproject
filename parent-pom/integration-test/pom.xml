@@ -6,13 +6,13 @@
 		<artifactId>parent-pom</artifactId>
 		<version>0.0.3-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>integration-test</artifactId>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>			
+			<artifactId>spring-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -20,25 +20,25 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>	
+			<artifactId>spring-test</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>			
+			<artifactId>spring-orm</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>			
+			<artifactId>spring-beans</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>			
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		          		
+
 		<dependency>
 			<groupId>es.microforum</groupId>
 			<artifactId>model</artifactId>
@@ -50,14 +50,14 @@
 			<artifactId>service-api</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 			<scope>compile</scope>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>es.microforum</groupId>
 			<artifactId>service-impl</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
@@ -65,8 +65,8 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-	
-		<repositories>
+
+	<repositories>
 		<repository>
 			<id>spring-libs-milestone</id>
 			<url>http://repo.springsource.org/libs-milestone</url>
