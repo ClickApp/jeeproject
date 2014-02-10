@@ -32,7 +32,8 @@
 		<xerces.version>2.10.0</xerces.version>
 		<javaxvalidation.version>1.0.0.GA</javaxvalidation.version>
 		<commonsfileupload.version>1.2</commonsfileupload.version>
-		<asm.version>3.1</asm.version>		
+		<asm.version>3.1</asm.version>	
+		
 	</properties>
 	
 	<dependencies>
@@ -41,6 +42,7 @@
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -65,6 +67,7 @@
 	
 	<dependencyManagement>
 		<dependencies>
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
