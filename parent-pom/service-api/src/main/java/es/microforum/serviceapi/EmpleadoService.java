@@ -17,5 +17,5 @@ public interface EmpleadoService {
 	public abstract Page<Empleado> findByNombre(Pageable pageable, String nombre); // Obtener empleados por nombre
 	public abstract Empleado save(Empleado empleado); // Agregar, modificar un empleado
 	public abstract void delete(Empleado empleado);	// Eliminar un empleado	
-	public abstract void actualizarSalario(Double porcentaje); //Actualiza el salario anual de los empleados en funcion de un porcentaje
+	public abstract void actualizarSalario(double porcentaje); //Actualiza el salario anual de los empleados en funcion de un porcentaje
 }
