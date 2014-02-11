@@ -88,6 +88,12 @@ public class EmpleadoServiceImplTest {
 
 	@Test
 	@Transactional
+	public void testActualizarSalario() {
+		
+	}
+	
+	@Test
+	@Transactional
 	public void testDelete() {
 		//Agrego un empleado a la base de datos y compruebo que realmente se agrego
 		empleadoService.save(empleado);	
