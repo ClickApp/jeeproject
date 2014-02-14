@@ -33,7 +33,8 @@
 		<javaxvalidation.version>1.0.0.GA</javaxvalidation.version>
 		<commonsfileupload.version>1.2</commonsfileupload.version>
 		<asm.version>3.1</asm.version>	
-		
+		<jaxwsrt.version>2.2.8</jaxwsrt.version>
+		<jaxspring.version>1.9</jaxspring.version>
 	</properties>
 	
 	<dependencies>
@@ -66,8 +67,7 @@
 	</dependencies>
 	
 	<dependencyManagement>
-		<dependencies>
-			
+		<dependencies>			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -76,6 +76,11 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
@@ -227,6 +232,16 @@
 				<artifactId>asm</artifactId>
 				<version>${asm.version}</version>
 			</dependency>		
+			<dependency>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-rt</artifactId>
+				<version>${jaxwsrt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jvnet.jax-ws-commons.spring</groupId>
+				<artifactId>jaxws-spring</artifactId>
+				<version>${jaxspring.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
