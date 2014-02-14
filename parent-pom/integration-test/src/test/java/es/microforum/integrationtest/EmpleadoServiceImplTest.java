@@ -91,16 +91,16 @@ public class EmpleadoServiceImplTest {
 	public void testActualizarSalario() {
 		//Agregamos un empleado a la base de datos (Transactional)
 		empleadoService.save(empleado);	
-		//Busco el empleado y obtengo su sueldo actual para ver si la actualización es correcta
+		//Busco el empleado y obtengo su sueldo actual para ver si la actualizacion es correcta
 		empleado2 = empleadoService.findByDni("dni1");
 		double salarioActual = empleado2.getSalarioAnual();
 		//Modifico el salarioActual de los empleados en un 10%
 		empleadoService.actualizarSalario(10.0);
 		//Obtengo el empleado desde la BBDD
 		empleado2 = empleadoService.findByDni("dni1");
-		//Compruebo que el salarioAnual cambio en relación al salarioAactual anterior 
+		//Compruebo que el salarioAnual cambio en relacion al salarioAactual anterior 
 		assertTrue(salarioActual != empleado2.getSalarioAnual());
-		//Compruebo que la actualización del salario es correcta
+		//Compruebo que la actualizacion del salario es correcta
 		assertTrue(((salarioActual * 10.0) / 100) + salarioActual == empleado2.getSalarioAnual());
 	}
 	
