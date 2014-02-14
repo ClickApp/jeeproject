@@ -26,3 +26,6 @@ Implementar un frontend de servicios (25)
 -Ofrecer el servicio de aumento de salarios también mediante una API SOAP
 
 Implementar un frontend Web (25)
+
+Securizar aplicaciones (25)
+-Securizar el frontend Web mediante Spring Security
